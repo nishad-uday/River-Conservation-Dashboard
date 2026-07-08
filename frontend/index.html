@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>River Conservation — Dashboard</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <h1>River Conservation</h1>
+      <p class="sub">नदी संरक्षण • Water & Soil Quality</p>
+    </div>
+    <div class="controls">
+      <label class="toggle"><input id="langToggle" type="checkbox"> हिन्दी / English</label>
+      <button id="refreshBtn">Refresh</button>
+    </div>
+  </div>
+
+  <main class="grid">
+    <section class="card input-card">
+      <h2 id="inputTitle">Manual Test / मैनुअल परीक्षण</h2>
+      <div class="form-grid">
+        <label>pH
+          <input id="ph" type="number" step="0.01" value="7.00">
+        </label>
+        <label>EC (µS/cm)
+          <input id="ec" type="number" step="0.1" value="300">
+        </label>
+        <label>TDS (mg/L)
+          <input id="tds" type="number" step="0.1" value="200">
+        </label>
+        <label>Temperature (°C)
+          <input id="temp" type="number" step="0.1" value="25">
+        </label>
+        <label>Dissolved O₂ (mg/L)
+          <input id="do" type="number" step="0.1" value="6">
+        </label>
+        <label>Moisture (%)
+          <input id="moisture" type="number" step="0.1" value="30">
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="btnCheck" class="primary">Predict / पूर्वानुमान</button>
+        <button id="btnIngest" class="ghost">Save Local / सहेजें</button>
+        <input type="file" id="csvFile" accept=".csv" style="display:none;">
+        <button id="uploadCSV" class="ghost">Upload CSV / CSV अपलोड</button>
+      </div>
+
+      <pre id="resultBox" class="result">Result will appear here / परिणाम यहाँ आएगा</pre>
+    </section>
+
+    <section class="card charts-card">
+      <h2>Recent pH Trend / हालिया pH प्रवृत्ति</h2>
+      <canvas id="phChart"></canvas>
+    </section>
+
+    <section class="card table-card">
+      <h2>Recent Readings / हाल की रीडिंग्स</h2>
+      <div id="alertArea" class="alerts"></div>
+      <table id="historyTable">
+        <thead><tr>
+          <th>Time / समय</th><th>pH</th><th>EC</th><th>TDS</th><th>DO</th><th>Moisture</th><th>Result</th>
+        </tr></thead>
+        <tbody id="historyBody"><tr><td colspan="7" class="muted">No data yet</td></tr></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">Team Code Bringers • River Conservation Project</footer>
+  <script src="script.js"></script>
+</body>
+</html>
